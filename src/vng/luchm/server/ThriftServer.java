@@ -8,7 +8,6 @@ package vng.luchm.server;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.thrift.server.TServer;
-import org.apache.thrift.server.TSimpleServer;
 import org.apache.thrift.server.TThreadPoolServer;
 import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TServerTransport;
@@ -28,11 +27,8 @@ public class ThriftServer {
     public static void main(String[] args) {
         handler = new CalculatorServiceHandler();
         processor = new Calculator.Processor(handler);
-        Runnable threadServerStart = new Runnable() {
-            @Override
-            public void run() {
-                serverStart(processor);
-            }
+        Runnable threadServerStart = () -> {
+            serverStart(processor);
         };
         new Thread(threadServerStart).start();
     }

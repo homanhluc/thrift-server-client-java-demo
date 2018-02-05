@@ -43,7 +43,6 @@ public class ThriftClient {
     }
 
     private static void calculator(Calculator.Client client) throws TException {
-        new Calculator();
         Scanner sc = new Scanner(System.in);
 
         int choose = 0;
